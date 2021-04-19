@@ -3,6 +3,7 @@
   display: flex;
   margin-top: 5px;
   margin-bottom: 5px;
+  cursor: pointer;
 }
 
 .question_profile > img {
@@ -24,4 +25,9 @@
   background-color: gainsboro;
   z-index: 11;
   position: absolute;
+}
+.question_popup {
+  width: 50vh;
+  height: 60vh;
+  background-color: ghostwhite;
 }

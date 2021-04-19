@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import Model from "./Model";
 import "./style.css";
-
-function Question({ creation_date, owner, title }) {
-  const [model, setModel] = useState(false);
-  const openModel = () => {
-    setModel(!model);
-  };
-
+import Modal from "react-modal";
+Modal.setAppElement("#root");
+function Question({ creation_date, link, owner, title }) {
+  const [modalIsOpen, setModalOption] = useState(false);
   return (
     <>
-      <div className="question" onClick={openModel}>
+      <div className="question" onClick={() => setModalOption(true)}>
         <div className="question_profile">
           <img src={owner.profile_image} alt="" />
         </div>
@@ -23,7 +19,28 @@ function Question({ creation_date, owner, title }) {
         </div>
         <hr />
       </div>
-      {model === true ? <Model /> : null}
+      <Modal
+        isOpen={modalIsOpen}
+        shouldCloseOnOverlayClick={true}
+        onRequestClose={() => setModalOption(false)}
+        style={{ overlay: { backgroundColor: "gray" } }}
+      >
+        <h2>Question: {title}</h2>
+        <div>{link}</div>
+        <small>
+          because Actual question description is not in the Api that i am using
+        </small>
+
+        <div>
+          <button
+            onClick={() => {
+              setModalOption(false);
+            }}
+          >
+            close
+          </button>
+        </div>
+      </Modal>
     </>
   );
 }
